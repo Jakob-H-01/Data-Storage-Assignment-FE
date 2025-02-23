@@ -20,6 +20,7 @@ html {
 
 body {
   min-height: 100vh;
+  background-color: var(--bg);
 }
 
 button,
@@ -33,6 +34,7 @@ select {
   color-scheme: light;
   --primary-text: #000;
   --primary: #0d8b0d;
+  --bg: #f4f4f4;
 }
 
 .wrapper {
