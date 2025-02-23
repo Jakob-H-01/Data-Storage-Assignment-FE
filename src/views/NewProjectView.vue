@@ -1,6 +1,9 @@
 <script setup>
 import Header from '@/components/Header.vue'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const projectName = ref('')
 const price = ref('')
@@ -46,6 +49,7 @@ async function postData() {
     })
 
     console.log(res.status)
+    router.push('/projects')
   } catch {
     console.log('Something went wrong when submitting form')
   }

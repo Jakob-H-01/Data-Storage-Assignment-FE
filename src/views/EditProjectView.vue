@@ -3,9 +3,53 @@ import Header from '@/components/Header.vue'
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-const project = ref({})
 const route = useRoute()
 const router = useRouter()
+
+const project = ref({})
+
+const projectName = ref('')
+const price = ref('')
+// const serviceName = ref('')
+// const servicePrice = ref('')
+// const customerName = ref('')
+const startDate = ref('')
+const endDate = ref('')
+const description = ref('')
+const serviceId = ref('')
+const customerId = ref('')
+const employeeId = ref('')
+const statusId = ref('')
+// const firstName = ref('')
+// const lastName = ref('')
+// const email = ref('')
+
+async function modifyData() {
+  try {
+    const res = await fetch(`https://localhost:7262/api/projects/${route.params.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: project.value.id,
+        projectName: projectName.value,
+        description: description.value,
+        startDate: startDate.value,
+        endDate: endDate.value,
+        price: price.value,
+        statusId: statusId.value,
+        serviceId: serviceId.value,
+        employeeId: employeeId.value,
+        customerId: customerId.value,
+      }),
+    })
+    console.log(res.status)
+    router.push(`/projects/${route.params.id}`)
+  } catch {
+    console.log('Could not update project')
+  }
+}
 
 onMounted(async () => {
   try {
@@ -16,18 +60,6 @@ onMounted(async () => {
     console.log('Error fetching project')
   }
 })
-
-async function deleteData() {
-  try {
-    const res = await fetch(`https://localhost:7262/api/projects/${route.params.id}`, {
-      method: 'DELETE',
-    })
-    console.log(res.status)
-    router.push('/projects')
-  } catch {
-    console.log('Could not delete project')
-  }
-}
 </script>
 
 <template>
@@ -35,7 +67,7 @@ async function deleteData() {
   <main>
     <div class="wrapper">
       <h1>Projekt {{ project.id }}</h1>
-      <div class="container">
+      <form class="container" @submit.prevent="modifyData">
         <div class="left-container">
           <div class="top-container">
             <div class="field">
@@ -44,27 +76,27 @@ async function deleteData() {
             </div>
             <div class="field">
               <label>Benämning</label>
-              <input type="text" :value="project.projectName" disabled />
+              <input type="text" :placeholder="project.projectName" v-model="projectName" />
             </div>
           </div>
           <div class="middle-container">
             <div class="field">
               <label>Totalt belopp</label>
-              <input type="text" :value="project.price" disabled />
+              <input type="text" :placeholder="project.price" v-model="price" />
             </div>
             <div class="field">
               <label>Projektledare</label>
-              <input type="text" :value="project.employeeId" disabled />
+              <input type="text" :placeholder="project.employeeId" v-model="employeeId" />
             </div>
           </div>
           <div class="bottom-container">
             <div class="field">
               <label>Tjänst</label>
-              <input type="text" :value="project.serviceId" disabled />
+              <input type="text" :placeholder="project.serviceId" v-model="serviceId" />
             </div>
             <div class="field">
               <label>Kundnamn</label>
-              <input type="text" :value="project.customerId" disabled />
+              <input type="text" :placeholder="project.customerId" v-model="customerId" />
             </div>
           </div>
         </div>
@@ -72,29 +104,36 @@ async function deleteData() {
           <div class="top-container">
             <div class="field">
               <label>Startdatum</label>
-              <input type="text" :value="project.startDate" disabled />
+              <input type="date" :placeholder="project.startDate" v-model="startDate" />
             </div>
             <div class="field">
               <label>Slutdatum</label>
-              <input type="text" :value="project.endDate" disabled />
+              <input type="date" :placeholder="project.endDate" v-model="endDate" />
             </div>
             <div class="field">
               <label>Status</label>
-              <input type="text" :value="project.statusId" disabled />
+              <input type="text" :placeholder="project.statusId" v-model="statusId" />
             </div>
           </div>
           <div class="field">
             <label>Beskrivning</label>
-            <textarea name="" id="" :value="project.description" disabled></textarea>
+            <textarea
+              name=""
+              id=""
+              :placeholder="project.description"
+              v-model="description"
+            ></textarea>
           </div>
           <div class="button-container">
-            <RouterLink :to="{ name: 'Edit', params: { id: route.params.id } }" class="btn btn-edit"
-              >Ändra projekt</RouterLink
+            <button class="btn btn-save">Spara</button>
+            <RouterLink
+              :to="{ name: 'Project', params: { id: route.params.id } }"
+              class="btn btn-cancel"
+              >Avbryt</RouterLink
             >
-            <button class="btn btn-delete" @click="deleteData">Radera projekt</button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </main>
 </template>
@@ -168,14 +207,14 @@ textarea {
   align-self: flex-end;
   cursor: pointer;
 }
-.btn-edit {
+.btn-save {
   background-color: var(--primary);
 
   &:hover {
     background-color: hsl(120, 83%, 22%);
   }
 }
-.btn-delete {
+.btn-cancel {
   background-color: #cd0909;
 
   &:hover {
