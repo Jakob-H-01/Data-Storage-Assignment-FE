@@ -16,9 +16,6 @@ const customerName = ref('')
 const startDate = ref('')
 const endDate = ref('')
 const description = ref('')
-const serviceId = ref('')
-const customerId = ref('')
-const employeeId = ref('')
 const statusName = ref('')
 const firstName = ref('')
 const lastName = ref('')
@@ -39,11 +36,16 @@ async function modifyData() {
         endDate: endDate.value,
         price: price.value,
         statusId: project.value.statusId,
-        serviceId: project.value.serviceId,
-        employeeId: project.value.employeeId,
-        customerId: project.value.customerId,
         statusName: statusName.value,
+        serviceId: project.value.serviceId,
         serviceName: serviceName.value,
+        servicePrice: servicePrice.value,
+        employeeId: project.value.employeeId,
+        employeeFirstName: firstName.value,
+        employeeLastName: lastName.value,
+        employeeEmail: email.value,
+        customerId: project.value.customerId,
+        customerName: customerName.value,
       }),
     })
     console.log(res.status)
@@ -131,23 +133,15 @@ onMounted(async () => {
           <div class="inner-container">
             <div class="field">
               <label>Förnamn</label>
-              <input
-                type="text"
-                :placeholder="project.employeeFirstName"
-                v-model="employeeFirstName"
-              />
+              <input type="text" :placeholder="project.employeeFirstName" v-model="firstName" />
             </div>
             <div class="field">
               <label>Efternamn</label>
-              <input
-                type="text"
-                :placeholder="project.employeeLastName"
-                v-model="employeeLastName"
-              />
+              <input type="text" :placeholder="project.employeeLastName" v-model="lastName" />
             </div>
             <div class="field">
               <label>E-post</label>
-              <input type="text" :placeholder="project.employeeEmail" v-model="employeeEmail" />
+              <input type="text" :placeholder="project.employeeEmail" v-model="email" />
             </div>
           </div>
           <div class="button-container">
