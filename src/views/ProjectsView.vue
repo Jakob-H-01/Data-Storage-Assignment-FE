@@ -24,8 +24,8 @@ onMounted(async () => {
         <div class="card-info">
           <p>{{ project.id }}</p>
           <p>{{ project.projectName }}</p>
-          <p>{{ `${project.startDate} - ${project.endDate}` }}</p>
-          <p>{{ project.statusId }}</p>
+          <p>{{ `${project.startDate.split('T')[0]} - ${project.endDate.split('T')[0]}` }}</p>
+          <p>{{ project.statusName }}</p>
         </div>
         <RouterLink :to="{ name: 'Project', params: { id: project.id } }" class="btn-details"
           >Mer Info</RouterLink

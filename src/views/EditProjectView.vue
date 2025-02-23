@@ -10,19 +10,19 @@ const project = ref({})
 
 const projectName = ref('')
 const price = ref('')
-// const serviceName = ref('')
-// const servicePrice = ref('')
-// const customerName = ref('')
+const serviceName = ref('')
+const servicePrice = ref('')
+const customerName = ref('')
 const startDate = ref('')
 const endDate = ref('')
 const description = ref('')
 const serviceId = ref('')
 const customerId = ref('')
 const employeeId = ref('')
-const statusId = ref('')
-// const firstName = ref('')
-// const lastName = ref('')
-// const email = ref('')
+const statusName = ref('')
+const firstName = ref('')
+const lastName = ref('')
+const email = ref('')
 
 async function modifyData() {
   try {
@@ -38,10 +38,12 @@ async function modifyData() {
         startDate: startDate.value,
         endDate: endDate.value,
         price: price.value,
-        statusId: statusId.value,
-        serviceId: serviceId.value,
-        employeeId: employeeId.value,
-        customerId: customerId.value,
+        statusId: project.value.statusId,
+        serviceId: project.value.serviceId,
+        employeeId: project.value.employeeId,
+        customerId: project.value.customerId,
+        statusName: statusName.value,
+        serviceName: serviceName.value,
       }),
     })
     console.log(res.status)
@@ -84,19 +86,21 @@ onMounted(async () => {
               <label>Totalt belopp</label>
               <input type="text" :placeholder="project.price" v-model="price" />
             </div>
-            <div class="field">
-              <label>Projektledare</label>
-              <input type="text" :placeholder="project.employeeId" v-model="employeeId" />
-            </div>
           </div>
           <div class="bottom-container">
-            <div class="field">
-              <label>Tjänst</label>
-              <input type="text" :placeholder="project.serviceId" v-model="serviceId" />
+            <div class="inner-container">
+              <div class="field">
+                <label>Tjänst</label>
+                <input type="text" :placeholder="project.serviceName" v-model="serviceName" />
+              </div>
+              <div class="field">
+                <label>Pris</label>
+                <input type="text" :placeholder="project.servicePrice" v-model="servicePrice" />
+              </div>
             </div>
             <div class="field">
               <label>Kundnamn</label>
-              <input type="text" :placeholder="project.customerId" v-model="customerId" />
+              <input type="text" :placeholder="project.customerName" v-model="customerName" />
             </div>
           </div>
         </div>
@@ -112,7 +116,7 @@ onMounted(async () => {
             </div>
             <div class="field">
               <label>Status</label>
-              <input type="text" :placeholder="project.statusId" v-model="statusId" />
+              <input type="text" :placeholder="project.statusName" v-model="statusName" />
             </div>
           </div>
           <div class="field">
@@ -123,6 +127,28 @@ onMounted(async () => {
               :placeholder="project.description"
               v-model="description"
             ></textarea>
+          </div>
+          <div class="inner-container">
+            <div class="field">
+              <label>Förnamn</label>
+              <input
+                type="text"
+                :placeholder="project.employeeFirstName"
+                v-model="employeeFirstName"
+              />
+            </div>
+            <div class="field">
+              <label>Efternamn</label>
+              <input
+                type="text"
+                :placeholder="project.employeeLastName"
+                v-model="employeeLastName"
+              />
+            </div>
+            <div class="field">
+              <label>E-post</label>
+              <input type="text" :placeholder="project.employeeEmail" v-model="employeeEmail" />
+            </div>
           </div>
           <div class="button-container">
             <button class="btn btn-save">Spara</button>
@@ -166,6 +192,10 @@ onMounted(async () => {
   display: flex;
   gap: 3rem;
 }
+.inner-container {
+  display: flex;
+  gap: 3rem;
+}
 .bottom-container {
   display: flex;
   flex-direction: column;
@@ -198,7 +228,7 @@ textarea {
   align-self: flex-end;
 }
 .btn {
-  margin-top: 14.9rem;
+  margin-top: 6rem;
   padding: 0.4em 0.6em;
   border-radius: 0.5em;
   background-color: var(--primary);

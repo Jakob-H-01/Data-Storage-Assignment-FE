@@ -52,19 +52,21 @@ async function deleteData() {
               <label>Totalt belopp</label>
               <input type="text" :value="project.price" disabled />
             </div>
-            <div class="field">
-              <label>Projektledare</label>
-              <input type="text" :value="project.employeeId" disabled />
-            </div>
           </div>
           <div class="bottom-container">
-            <div class="field">
-              <label>Tjänst</label>
-              <input type="text" :value="project.serviceId" disabled />
+            <div class="inner-container">
+              <div class="field">
+                <label>Tjänst</label>
+                <input type="text" :value="project.serviceName" disabled />
+              </div>
+              <div class="field">
+                <label>Pris</label>
+                <input type="text" :value="project.servicePrice" disabled />
+              </div>
             </div>
             <div class="field">
               <label>Kundnamn</label>
-              <input type="text" :value="project.customerId" disabled />
+              <input type="text" :value="project.customerName" disabled />
             </div>
           </div>
         </div>
@@ -80,12 +82,26 @@ async function deleteData() {
             </div>
             <div class="field">
               <label>Status</label>
-              <input type="text" :value="project.statusId" disabled />
+              <input type="text" :value="project.statusName" disabled />
             </div>
           </div>
           <div class="field">
             <label>Beskrivning</label>
             <textarea name="" id="" :value="project.description" disabled></textarea>
+          </div>
+          <div class="inner-container">
+            <div class="field">
+              <label>Förnamn</label>
+              <input type="text" :value="project.employeeFirstName" disabled />
+            </div>
+            <div class="field">
+              <label>Efternamn</label>
+              <input type="text" :value="project.employeeLastName" disabled />
+            </div>
+            <div class="field">
+              <label>E-post</label>
+              <input type="text" :value="project.employeeEmail" disabled />
+            </div>
           </div>
           <div class="button-container">
             <RouterLink :to="{ name: 'Edit', params: { id: route.params.id } }" class="btn btn-edit"
@@ -127,6 +143,10 @@ async function deleteData() {
   display: flex;
   gap: 3rem;
 }
+.inner-container {
+  display: flex;
+  gap: 3rem;
+}
 .bottom-container {
   display: flex;
   flex-direction: column;
@@ -159,7 +179,7 @@ textarea {
   align-self: flex-end;
 }
 .btn {
-  margin-top: 14.9rem;
+  margin-top: 6rem;
   padding: 0.4em 0.6em;
   border-radius: 0.5em;
   background-color: var(--primary);
