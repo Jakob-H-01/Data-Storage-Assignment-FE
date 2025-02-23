@@ -17,14 +17,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-block: 2rem;
+  padding-block: 2.5rem;
 }
 .nav {
   display: flex;
   gap: 3rem;
 }
 a {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   color: var(--primary-text);
 
   &:hover {
