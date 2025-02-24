@@ -83,50 +83,92 @@ onMounted(async () => {
         <div class="left-container">
           <div class="top-container">
             <div class="field">
-              <label>Projektnummer</label>
-              <input type="text" :value="project.id" disabled />
+              <label for="projectId">Projektnummer</label>
+              <input type="text" name="projectId" :value="project.id" disabled />
             </div>
             <div class="field">
-              <label>Benämning</label>
-              <input type="text" :placeholder="project.projectName" v-model="projectName" />
+              <label for="projectName">Benämning</label>
+              <input
+                type="text"
+                name="projectName"
+                :placeholder="project.projectName"
+                v-model="projectName"
+                required
+              />
             </div>
           </div>
           <div class="middle-container">
             <div class="field">
-              <label>Totalt belopp</label>
-              <input type="text" :placeholder="project.price" v-model="price" />
+              <label for="price">Totalt belopp</label>
+              <input
+                type="text"
+                name="price"
+                :placeholder="project.price"
+                v-model="price"
+                required
+              />
             </div>
           </div>
           <div class="bottom-container">
             <div class="inner-container">
               <div class="field">
-                <label>Tjänst</label>
-                <input type="text" :placeholder="project.serviceName" v-model="serviceName" />
+                <label for="serviceName">Tjänst</label>
+                <input
+                  type="text"
+                  name="serviceName"
+                  :placeholder="project.serviceName"
+                  v-model="serviceName"
+                  required
+                />
               </div>
               <div class="field">
-                <label>Pris</label>
-                <input type="text" :placeholder="project.servicePrice" v-model="servicePrice" />
+                <label for="servicePrice">Pris</label>
+                <input
+                  type="text"
+                  name="servicePrice"
+                  :placeholder="project.servicePrice"
+                  v-model="servicePrice"
+                  required
+                />
               </div>
             </div>
             <div class="field">
-              <label>Kundnamn</label>
-              <input type="text" :placeholder="project.customerName" v-model="customerName" />
+              <label for="customerName">Kundnamn</label>
+              <input
+                type="text"
+                name="customerName"
+                :placeholder="project.customerName"
+                v-model="customerName"
+                required
+              />
             </div>
           </div>
         </div>
         <div class="right-container">
           <div class="top-container">
             <div class="field">
-              <label>Startdatum</label>
-              <input type="date" :placeholder="project.startDate" v-model="startDate" />
+              <label for="startDate">Startdatum</label>
+              <input
+                type="date"
+                name="startDate"
+                :placeholder="project.startDate"
+                v-model="startDate"
+                required
+              />
             </div>
             <div class="field">
-              <label>Slutdatum</label>
-              <input type="date" :placeholder="project.endDate" v-model="endDate" />
+              <label for="endDate">Slutdatum</label>
+              <input
+                type="date"
+                name="endDate"
+                :placeholder="project.endDate"
+                v-model="endDate"
+                required
+              />
             </div>
             <div class="field">
-              <label>Status</label>
-              <select type="text" v-model="statusName">
+              <label for="status">Status</label>
+              <select type="text" name="status" v-model="statusName" required>
                 <option value="Ej påbörjat">Ej påbörjat</option>
                 <option value="Pågående">Pågående</option>
                 <option value="Avslutat">Avslutat</option>
@@ -134,26 +176,44 @@ onMounted(async () => {
             </div>
           </div>
           <div class="field">
-            <label>Beskrivning</label>
+            <label for="description">Beskrivning</label>
             <textarea
-              name=""
-              id=""
+              name="description"
               :placeholder="project.description"
               v-model="description"
+              required
             ></textarea>
           </div>
           <div class="inner-container">
             <div class="field">
-              <label>Förnamn</label>
-              <input type="text" :placeholder="project.employeeFirstName" v-model="firstName" />
+              <label for="firstName">Förnamn</label>
+              <input
+                type="text"
+                name="firstName"
+                :placeholder="project.employeeFirstName"
+                v-model="firstName"
+                required
+              />
             </div>
             <div class="field">
-              <label>Efternamn</label>
-              <input type="text" :placeholder="project.employeeLastName" v-model="lastName" />
+              <label for="lastName">Efternamn</label>
+              <input
+                type="text"
+                name="lastName"
+                :placeholder="project.employeeLastName"
+                v-model="lastName"
+                required
+              />
             </div>
             <div class="field">
-              <label>E-post</label>
-              <input type="text" :placeholder="project.employeeEmail" v-model="email" />
+              <label for="email">E-post</label>
+              <input
+                type="email"
+                name="email"
+                :placeholder="project.employeeEmail"
+                v-model="email"
+                required
+              />
             </div>
           </div>
           <div class="button-container">
