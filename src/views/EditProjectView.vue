@@ -35,17 +35,25 @@ async function modifyData() {
         startDate: startDate.value,
         endDate: endDate.value,
         price: price.value,
-        statusId: project.value.statusId,
-        statusName: statusName.value,
-        serviceId: project.value.serviceId,
-        serviceName: serviceName.value,
-        servicePrice: servicePrice.value,
-        employeeId: project.value.employeeId,
-        employeeFirstName: firstName.value,
-        employeeLastName: lastName.value,
-        employeeEmail: email.value,
-        customerId: project.value.customerId,
-        customerName: customerName.value,
+        status: {
+          Id: project.value.statusId,
+          statusName: statusName.value,
+        },
+        service: {
+          Id: project.value.serviceId,
+          serviceName: serviceName.value,
+          Price: servicePrice.value,
+        },
+        employee: {
+          Id: project.value.employeeId,
+          FirstName: firstName.value,
+          LastName: lastName.value,
+          Email: email.value,
+        },
+        customer: {
+          Id: project.value.customerId,
+          customerName: customerName.value,
+        },
       }),
     })
     console.log(res.status)
