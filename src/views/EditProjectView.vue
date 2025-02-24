@@ -126,7 +126,11 @@ onMounted(async () => {
             </div>
             <div class="field">
               <label>Status</label>
-              <input type="text" :placeholder="project.statusName" v-model="statusName" />
+              <select type="text" v-model="statusName">
+                <option value="Ej påbörjat">Ej påbörjat</option>
+                <option value="Pågående">Pågående</option>
+                <option value="Avslutat">Avslutat</option>
+              </select>
             </div>
           </div>
           <div class="field">
@@ -215,7 +219,8 @@ label {
   font-size: 1.4rem;
 }
 input,
-textarea {
+textarea,
+select {
   font-size: 1.4rem;
   padding: 0.4em 0.5em;
   background-color: white;
@@ -223,6 +228,9 @@ textarea {
   color: var(--primary-text);
   border-radius: 0.3em;
   resize: none;
+}
+option {
+  color: var(--primary-text);
 }
 .button-container {
   display: flex;

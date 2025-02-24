@@ -31,7 +31,7 @@ async function postData() {
         endDate: endDate.value,
         price: price.value,
         status: {
-          statusName: 'Påbörjad',
+          statusName: 'Ej påbörjat',
         },
         service: {
           serviceName: serviceName.value,
